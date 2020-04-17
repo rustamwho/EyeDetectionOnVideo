@@ -8,11 +8,12 @@ global frame_jump
 global num_processes, gpu
 gpu = True
 num_processes = 2
+"""
 if gpu is True:
     frame_jump = length // 8
 else:
     frame_jump = cv2.VideoCapture("Large.MOV").get(cv2.CAP_PROP_FRAME_COUNT) // num_processes  # // mp.cpu_count()
-
+"""
 global odd
 if length % 2 != 0:
     odd = True
@@ -30,11 +31,14 @@ def process_video(group_number):
         frames = frame_jump + 1
     else:
         frames = frame_jump
+    """
     if (gpu is True) and (group_number == num_processes - 1):
         device = 'cuda'
         frames = frames * 7
     else:
         device = 'cpu'
+    """
+    device='cuda'
     print("group_number " + str(group_number) + "  frames  " + str(frames))
     # out = cv2.VideoWriter("output_{}.avi".format(group_number), ...)
     while proc_frames < frames:
