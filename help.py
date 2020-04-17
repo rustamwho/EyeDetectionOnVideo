@@ -14,21 +14,24 @@ if gpu is True:
 else:
     frame_jump = cv2.VideoCapture("Large.MOV").get(cv2.CAP_PROP_FRAME_COUNT) // num_processes  # // mp.cpu_count()
 """
+cap = cv2.VideoCapture("Large.MOV")
+frame_jump = cap.get(
+    cv2.CAP_PROP_FRAME_COUNT) // num_processes  # по сколько кадров каждому процессу
 global odd
-if length % 2 != 0:
+# если кадры не делятся поровну на количество процессов
+if length % num_processes != 0:
     odd = True
 else:
     odd = False
 
 
 def process_video(group_number):
-    global frame_jump, length, num_processes, odd, gpu
-    cap = cv2.VideoCapture("Large.MOV")
+    global frame_jump, length, num_processes, odd, gpu, cap
     startFrame = frame_jump * group_number
     cap.set(cv2.CAP_PROP_POS_FRAMES, startFrame)
     proc_frames = 0
     if (group_number == num_processes - 1) and (odd is True) and (num_processes != 1):
-        frames = frame_jump + 1
+        frames = length - frame_jump * (num_processes - 1)  # последнему процессу оставшиеся кадры
     else:
         frames = frame_jump
     """
@@ -38,7 +41,7 @@ def process_video(group_number):
     else:
         device = 'cpu'
     """
-    device='cuda'
+    device = 'cuda'
     print("group_number " + str(group_number) + "  frames  " + str(frames))
     # out = cv2.VideoWriter("output_{}.avi".format(group_number), ...)
     while proc_frames < frames:
