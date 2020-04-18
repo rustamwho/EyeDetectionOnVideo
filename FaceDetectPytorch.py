@@ -16,7 +16,7 @@ detectorPytorchCpu= mtcnnPytorch(margin = 100, select_largest = False, post_proc
                                device = 'cpu')
 detectorPytorchCuda = mtcnnPytorch(margin = 100, select_largest = False, post_process = False, keep_all = False,
                                device = 'cuda')
-outPath = "C:/Users/rusta/Desktop/OutImages"
+outPath = "C:/Users/landwatersun1/Deskto/OuitImages"
 
 
 def FaceAndLandmarksDetectPyTorch(device, img, i):

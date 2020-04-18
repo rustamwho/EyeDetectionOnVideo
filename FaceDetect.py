@@ -9,7 +9,7 @@ import os
 
 # os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
-
+"""
 gpus = tf.config.experimental.list_physical_devices('GPU')
 if gpus:
     try:
@@ -24,8 +24,8 @@ if gpus:
     except RuntimeError as e:
         # Memory growth must be set before GPUs have been initialized
         print(e)
-
-outPath = "C:/Users/rusta/Desktop/OutImages"
+"""
+outPath = "C:/Users/landwatersun1/Deskto/OuitImages"
 
 
 def FaceAndLandmarksDetect(img, i):
@@ -67,9 +67,9 @@ def FaceAndLandmarksDetect(img, i):
     return image
 
 
-"""
+
 q = cv2.cvtColor(cv2.imread("3people.jpg"), cv2.COLOR_BGR2RGB)
-im = FaceAndLandmarksDetect(q)
+im = FaceAndLandmarksDetect(q,1)
 im=cv2.cvtColor(im,cv2.COLOR_BGR2RGB)
 scale_percent = 30  # Процент от изначального размера
 width = int(im.shape[1] * scale_percent / 100)
@@ -81,4 +81,4 @@ img = cv2.cvtColor(resized, cv2.COLOR_BGR2RGB)
 cv2.namedWindow("image")
 cv2.imshow("image", img)
 cv2.waitKey(0)
-"""
+
