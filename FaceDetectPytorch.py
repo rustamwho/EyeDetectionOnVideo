@@ -12,10 +12,10 @@ import time
 #ima = cv2.cvtColor(cv2.imread("3people.jpg"), cv2.COLOR_BGR2RGB)
 # detector = MTCNN(None, 40)
 # result = detector.detect_faces(image)
-detectorPytorchCpu= mtcnnPytorch(margin = 100, select_largest = False, post_process = False, keep_all = False,
-                               device = 'cpu')
-detectorPytorchCuda = mtcnnPytorch(margin = 100, select_largest = False, post_process = False, keep_all = False,
-                               device = 'cuda')
+detectorPytorchCpu = mtcnnPytorch(margin = 100, min_face_size=30,select_largest = False, post_process = False, keep_all = False,
+                                  device = 'cpu')
+detectorPytorchCuda = mtcnnPytorch(margin = 100,min_face_size=30, select_largest = False, post_process = False, keep_all = False,
+                                   device = 'cuda')
 outPath = "C:/Users/landwatersun1/Deskto/OuitImages"
 
 
