@@ -14,19 +14,20 @@ def Detect(image):
         y1 = face.top()
         x2 = face.right()
         y2 = face.bottom()
-        cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 1)
+        cv2.rectangle(image, (x1, y1), (x2, y2), (255, 0, 0), 2)
 
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # Получение координат контрольных точек и их построение на изображении
         landmarks = predictor(gray, face)
+        print (landmarks)
         for n in range(0, 68):
             x = landmarks.part(n).x
             y = landmarks.part(n).y
             cv2.circle(image, (x, y), 1, (0, 0, 255), -1)
-        cv2.imwrite('C:/Users/rusta/Desktop/photo/outDlib/7.jpg', image)
+        cv2.imwrite('C:/Users/rusta/Desktop/photo/outDlib/6.jpg', image)
 
 
-img = cv2.imread('C:/Users/rusta/Desktop/photo/7.jpg')
+img = cv2.imread('C:/Users/rusta/Desktop/photo/6.jpg')
 Detect(img)
 
 

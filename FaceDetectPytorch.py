@@ -9,15 +9,12 @@ import os
 from numpy import *
 import time
 
-#ima = cv2.cvtColor(cv2.imread("3people.jpg"), cv2.COLOR_BGR2RGB)
-# detector = MTCNN(None, 40)
-# result = detector.detect_faces(image)
-detectorPytorchCpu = mtcnnPytorch(margin = 100, min_face_size=30,select_largest = False, post_process = False, keep_all = False,
-                                  device = 'cpu')
-detectorPytorchCuda = mtcnnPytorch(margin = 100,min_face_size=30, select_largest = False, post_process = False, keep_all = False,
-                                   device = 'cuda')
-outPath = "C:/Users/landwatersun1/Deskto/OuitImages"
 
+detectorPytorchCpu = mtcnnPytorch(margin = 100, min_face_size=30,select_largest = False, post_process = False,
+                                  keep_all = False, device = 'cpu')
+detectorPytorchCuda = mtcnnPytorch(margin = 100,min_face_size=30, select_largest = False, post_process = False,
+                                   keep_all = False, device = 'cuda')
+outPath = "C:/Users/rusta/Desktop/OutImages"
 
 def FaceAndLandmarksDetectPyTorch(device, img, i):
     image = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
@@ -29,7 +26,7 @@ def FaceAndLandmarksDetectPyTorch(device, img, i):
     boxes, probs, landmarks = method.detect(image, landmarks = True)
     print("--- %s seconds ---" % (time.clock() - start_time))
     # res = show_results(image, boxes, landmarks)
-    # Visualize
+
     if boxes is not None:
         landmarksFromDlib = DetectLandmarksForPyTorch(image, boxes)
         for l in landmarksFromDlib:
@@ -64,4 +61,3 @@ def FaceAndLandmarksDetectPyTorch(device, img, i):
     img.show()
     """
 
-#FaceAndLandmarksDetectPyTorch(ima, 1)

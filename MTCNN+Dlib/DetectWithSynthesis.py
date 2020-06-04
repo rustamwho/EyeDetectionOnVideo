@@ -57,8 +57,8 @@ def FaceAndLandmarksDetectPyTorch(device, img, i):
             for k in range(5):
                 cv2.circle(image, (l[k][0], l[k][1]), 1, (0, 155, 255), -1)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-        cv2.imwrite('C:/Users/rusta/Desktop/photo/outSynthesis/4.jpg', image)
+        cv2.imwrite('C:/Users/rusta/Desktop/photo/outSynthesis/6.jpg', image)
 
 
-img = cv2.imread('C:/Users/rusta/Desktop/photo/4.jpg')
+img = cv2.imread('C:/Users/rusta/Desktop/photo/6.jpg')
 FaceAndLandmarksDetectPyTorch('cuda', img, 1)
